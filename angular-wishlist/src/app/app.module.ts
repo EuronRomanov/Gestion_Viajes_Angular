@@ -2,12 +2,14 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
-import { SaludatorComponent } from './saludator/saludator.component';
+import { DestinoViajeComponent } from './destino-viaje/destino-viaje.component';
+import { ListaDestinosComponent } from './lista-destinos/lista-destinos.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    SaludatorComponent
+    DestinoViajeComponent,
+    ListaDestinosComponent
   ],
   imports: [
     BrowserModule
