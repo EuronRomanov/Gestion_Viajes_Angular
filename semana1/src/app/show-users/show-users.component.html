@@ -1,13 +1,14 @@
-<div class="col-md-4"> 
-    <div class="card-content"> 
-        <div class="card-img"> 
-            <img [src]="uploadDocument(galeriaUsuarios.getImagen())" alt=""> 
-            <span><h4>{{galeriaUsuarios.getNombre()}} {{galeriaUsuarios.getApellido()}}</h4></span> 
-        </div> 
-        <div class="card-desc"> 
-            <h3>{{galeriaUsuarios.getNombre()}}</h3> 
-            <p> {{galeriaUsuarios.getObservacion()}}</p> 
-                <a href="#" class="btn-card">Read</a>    
-        </div> 
-    </div> 
+
+<div class="col-12 col-md-6"> 
+    
+    <ul class="list-group">
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+            {{galeriaUsuarios.getNombre()}} {{galeriaUsuarios.getApellido()}}
+          <div class="image-parent">
+              
+              <img [src]="uploadDocument(galeriaUsuarios.getImagen())" class="img-fluid" alt=""> 
+          </div>
+        </li>
+    </ul>
+<
 </div> 
