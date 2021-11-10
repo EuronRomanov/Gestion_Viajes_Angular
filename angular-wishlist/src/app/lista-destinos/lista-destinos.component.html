@@ -30,7 +30,12 @@
         
         <div class="row row-flex">
         <div class="row"> 
-            <app-destino-viaje *ngFor="let d of destinos" [destino]="d"></app-destino-viaje> 
+            <app-destino-viaje 
+            *ngFor="let d of destinos; let i=index" 
+            [destino]="d"
+            [position]="i+1"
+            (clicked)="elegido($event)"
+            ></app-destino-viaje> 
         </div> 
     </div>
     </div> 
