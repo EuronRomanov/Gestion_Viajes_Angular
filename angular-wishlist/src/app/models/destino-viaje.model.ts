@@ -1,4 +1,5 @@
 export class DestinoViaje {
+    id!:number;
     private selected!: boolean;
     public servicios:string[];
     constructor(public n:string, public u:string) {
