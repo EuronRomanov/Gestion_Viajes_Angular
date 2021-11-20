@@ -51,7 +51,7 @@ let reducersInitialState={
     EffectsModule.forRoot([DestinosViajesState]),
     StoreDevtoolsModule.instrument()
   ],
-  providers: [DestinoApiClient ],
+  providers: [ ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
