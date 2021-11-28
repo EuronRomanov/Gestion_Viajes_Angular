@@ -4,6 +4,7 @@ import {  Actions, Effect, ofType} from "@ngrx/effects";
 import { Observable, of } from "rxjs";
 import { map } from "rxjs/operators";
 import {  DestinoViaje} from "./destino-viaje.model";
+import { HttpClientModule } from "@angular/common/http";
 
 
 export class DestinosViajesState {
@@ -26,7 +27,8 @@ export enum DestinosViajesActionTypes{
     NUEVO_DESTINO='[Destino Viajes] Nuevo',
     ELEGIDO_FAVORITO='[Destinos Viajes] Favorito',
     VOTE_UP='[Destinos Viajes] Vote Up',
-    VOTE_DOWN='[Destinos Viajes] Vote Down'
+    VOTE_DOWN='[Destinos Viajes] Vote Down',
+    INIT_MY_DATA='[Destinos Viajes] Init My Data'
 }
 
 
@@ -47,9 +49,12 @@ export class VoteDownAction implements Action{
     type=DestinosViajesActionTypes.VOTE_DOWN;
     constructor(public destino:DestinoViaje){}
 }
+export class InitMyDataAction implements Action{
+    type=DestinosViajesActionTypes.INIT_MY_DATA;
+    constructor(public destinos:string[]){}
+}
 
-
-export type DestinosViajesActions=NuevoDestinoAction | ElegidoFavoritoAction | VoteUpAction | VoteDownAction;
+export type DestinosViajesActions=NuevoDestinoAction | ElegidoFavoritoAction | VoteUpAction | VoteDownAction | InitMyDataAction;
 //REDUCERS
 export function reducerDestinosViajes(
     state: DestinosViajesState,
@@ -86,6 +91,14 @@ export function reducerDestinosViajes(
             return{ ...state  };
            
         }
+        case DestinosViajesActionTypes.INIT_MY_DATA:{
+            const destinos: string[]=(action as InitMyDataAction).destinos;
+            return {
+                ...state,
+                items:destinos.map((d)=>new DestinoViaje(d,''))
+            }
+
+        }
     }
 
     return state;
@@ -95,7 +108,7 @@ export function reducerDestinosViajes(
 
 @Injectable()
 export class  DestinoViajesEffects {
-    @Effect()
+   
     nuevoAgregado$:Observable<Action>=this.actions$.pipe(
         ofType(DestinosViajesActionTypes.NUEVO_DESTINO),
         map((action:NuevoDestinoAction)=>new ElegidoFavoritoAction(action.destino))
