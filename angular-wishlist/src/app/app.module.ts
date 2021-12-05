@@ -31,8 +31,12 @@ import { DestinoViaje } from './models/destino-viaje.model';
 import { TranslateLoader, TranslateService, TranslateModule } from "@ngx-translate/core";
 import { resourceLimits } from 'worker_threads';
 import { from } from 'rxjs';
+import { flatMap } from 'rxjs/operators';
 
-
+import { NgxMapboxGLModule } from 'ngx-mapbox-gl';
+import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
+import { EspiarmeDirective } from './espiarme.directive';
+import { TrackearClickDirective } from './trackear-click.directive';
 
 
 
@@ -181,7 +185,9 @@ function HttpLoaderFactory(http:HttpClient){
     VuelosMainComponentComponent,
     VuelosMainInfoComponentComponent,
     VuelosMasInfoComponentComponent,
-    VuelosDetalleComponentComponent
+    VuelosDetalleComponentComponent,
+    EspiarmeDirective,
+    TrackearClickDirective
    
     
   ],
@@ -195,7 +201,12 @@ function HttpLoaderFactory(http:HttpClient){
     StoreDevtoolsModule.instrument(),
     ReservasModule,
     HttpClientXsrfModule,
+    NgxMapboxGLModule.withConfig({
+      accessToken: 'pk.eyJ1IjoianVhbnBhYmxvZ2FvbmExIiwiYSI6ImNrZ2E1aWk5eTAxZTgycm16dzhudGN4dnUifQ.jKVm4cksw93H0IVGuW3OeA', // Optional, can also be set per map (accessToken input of mgl-map)
+      geocoderAccessToken: 'pk.eyJ1IjoianVhbnBhYmxvZ2FvbmExIiwiYSI6ImNrZ2E1aWk5eTAxZTgycm16dzhudGN4dnUifQ.jKVm4cksw93H0IVGuW3OeA' // Optional, specify if different from the map access token, can also be set per mgl-geocoder (accessToken input of mgl-geocoder)
+    }),
     Dexie,
+    BrowserAnimationsModule,
     TranslateModule.forRoot({
       loader:{
         provide:TranslateLoader,

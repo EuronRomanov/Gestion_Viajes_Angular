@@ -9,7 +9,8 @@
                     <h3 class="mb-0">Whishlist</h3> 
                 </div> 
                 <div class="card-body"> 
-                   <app-form-destino-viaje (onItemAdded)="agregado($event)"></app-form-destino-viaje>
+                   <app-form-destino-viaje (onItemAdded)="agregado($event)">
+                    </app-form-destino-viaje>
                     </div> 
                 </div> 
             </div> 
@@ -20,11 +21,11 @@
         <div class="row row-flex">
        
             <app-destino-viaje 
-            *ngFor="let d of all; let i=index" 
+            *ngFor="let d of destinosApiClient.getAll(); let i=index" 
             [destino]="d"
             [position]="i+1"
-            (clicked)="elegido(d)"
-            ></app-destino-viaje> 
+            (onClicked)="elegido(d)"
+            appEspiarme></app-destino-viaje> 
         
        </div>
 

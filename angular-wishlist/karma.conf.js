@@ -37,7 +37,13 @@ module.exports = function (config) {
     colors: true,
     logLevel: config.LOG_INFO,
     autoWatch: true,
-    browsers: ['Chrome'],
+    browsers: ['Chrome', 'ChromeHeadless', 'ChromeHeadlessCI'],
+    customlauchers:{
+      ChromeHeadlessCI:{
+        base: "ChromeHeadless",
+        flags: ['--no-sandbox', '--disable-gpu', '--disable-translate', '-disable-extensions', '--remote-debugging-port=9223']
+      }
+    },
     singleRun: false,
     restartOnFileChange: true
   });
